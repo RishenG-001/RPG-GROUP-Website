@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RPG Group - Architecting Intelligent Logistics. Custom software engineering and supply chain infrastructure for South Africa.">
+    <title>RPG Group | Systems & Logistics Architecture</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Companylogo.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        rpg: {
+                            primary: '#0f172a', // Slate 900
+                            secondary: '#334155', // Slate 700
+                            accent: '#2563eb', // Royal Blue
+                            bg: '#f8fafc', // Slate 50
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Accordion Styles */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.active {
+            opacity: 1;
+        }
+        
+        /* Back to Top Button */
+        #backToTop {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-sans overflow-x-hidden transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur border-b border-slate-100 dark:border-slate-800 transition-colors duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="images/Companylogo.png" alt="RPG Group Logo" class="h-12 w-auto object-contain">
+                <div class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    RPG<span class="text-rpg-accent">Group</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <a href="#services" class="hover:text-rpg-accent dark:hover:text-rpg-accent transition">Services</a>
+                <a href="#demos" class="hover:text-rpg-accent dark:hover:text-blue-400 transition font-bold text-blue-600 dark:text-blue-400">Live Demos</a>
+                <a href="#faq" class="hover:text-rpg-accent dark:hover:text-rpg-accent transition">FAQ</a>
+                <a href="#contact" class="hover:text-rpg-accent dark:hover:text-rpg-accent transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition focus:outline-none">
+                    <!-- Sun Icon (Show in Dark Mode) -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path></svg>
+                    <!-- Moon Icon (Show in Light Mode) -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+
+                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 bg-rpg-accent rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-500/20">
+                    Get in Touch
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" aria-label="Toggle Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg">
+            <div class="px-6 py-4 flex flex-col gap-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#services" class="block py-2" onclick="toggleMenu()">Services</a>
+                <a href="#demos" class="block py-2 font-bold text-blue-600 dark:text-blue-400" onclick="toggleMenu()">Live Demos</a>
+                <a href="#faq" class="block py-2" onclick="toggleMenu()">FAQ</a>
+                <a href="#contact" class="block py-2" onclick="toggleMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-40 overflow-hidden bg-slate-900">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover opacity-20">
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-50 dark:to-slate-900"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+                <div data-aos="fade-down" data-aos-duration="800" class="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-semibold tracking-wide text-blue-300 uppercase bg-blue-900/30 rounded-full border border-blue-800">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    Logistics & Systems Architecture
+                </div>
+                <h1 data-aos="fade-up" data-aos-duration="1000" class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
+                    Smart Logistics for a <br>
+                    <span class="text-rpg-accent">Connected World</span>
+                </h1>
+                <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10">
+                    RPG Group streamlines your supply chain with high-performance software and robust infrastructure. We build the systems that keep South Africa moving.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#demos" class="px-8 py-4 bg-rpg-accent text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-xl shadow-blue-900/20 transform hover:-translate-y-1">
+                        View Live Demos
+                    </a>
+                    <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-lg border border-white/10 hover:bg-white/20 transition transform hover:-translate-y-1">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="bg-slate-50 dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800 py-16 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-700">
+                    <div data-aos="zoom-in" data-aos-delay="0" class="text-center px-4 py-4">
+                        <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">99.9%</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">System Uptime</div>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="200" class="text-center px-4 py-4">
+                        <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Real-Time</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Data Tracking</div>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="400" class="text-center px-4 py-4">
+                        <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">24/7</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Support Team</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section 1: Enterprise Systems -->
+        <section id="services" class="py-24 bg-white dark:bg-slate-950 scroll-mt-20 overflow-hidden transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">Enterprise Systems Architecture</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        Tailored architecture for complex logistics operations. We deliver scalable solutions using industry-standard technology to automate critical decision-making processes.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Cloud Infrastructure Integration
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Advanced Data Analytics
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Process Automation
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2 rounded-3xl overflow-hidden shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1558494949-efc025848402?q=80&w=1000&auto=format&fit=crop" alt="Enterprise Server Architecture" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section 2: WMS -->
+        <section class="py-24 bg-slate-50 dark:bg-slate-900 overflow-hidden transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="rounded-3xl overflow-hidden shadow-2xl transform -rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="Modern Warehouse" class="w-full h-full object-cover">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center mb-6 text-purple-600 dark:text-purple-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">Inventory & Warehousing</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        Advanced WMS solutions designed for absolute accuracy. Real-time stock tracking with integrated reporting dashboards to prevent loss and optimize flow.
+                    </p>
+                    <a href="#demos" class="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-2 group">
+                        See how it works <span aria-hidden="true" class="group-hover:translate-x-1 transition">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Live Demos Section -->
+        <section id="demos" class="py-24 bg-slate-900 dark:bg-slate-950 text-white scroll-mt-20 border-t border-slate-800 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div data-aos="fade-up" class="text-center mb-16">
+                    <span class="text-blue-400 font-bold tracking-wider text-sm uppercase">Interactive Platforms</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-3">Experience Our Software Live</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- WMS Card -->
+                    <div data-aos="flip-left" data-aos-duration="1000" class="bg-slate-800 dark:bg-slate-900 rounded-2xl p-8 border border-slate-700 hover:border-blue-500 transition group hover:shadow-2xl hover:shadow-blue-500/10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold">WMS Platform</h3>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded-full">v2.4 ONLINE</span>
+                        </div>
+                        <p class="text-slate-400 mb-8 h-20">
+                            Comprehensive warehouse management. Handle inbound/outbound stock, bin locations, and picking lists with ease.
+                        </p>
+                        <a href="https://wms.rpggroup.co.za" target="_blank" class="block w-full text-center py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition transform group-hover:scale-[1.02]">
+                            Launch WMS Demo
+                        </a>
+                    </div>
+
+                    <!-- Inventory Card -->
+                    <div data-aos="flip-right" data-aos-duration="1000" class="bg-slate-800 dark:bg-slate-900 rounded-2xl p-8 border border-slate-700 hover:border-purple-500 transition group hover:shadow-2xl hover:shadow-purple-500/10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold">Inventory System</h3>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs font-bold rounded-full">LIVE DATA</span>
+                        </div>
+                        <p class="text-slate-400 mb-8 h-20">
+                            Real-time stock level monitoring. Set alerts for low stock, manage suppliers, and forecast demand.
+                        </p>
+                        <a href="https://inventory.rpggroup.co.za" target="_blank" class="block w-full text-center py-4 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition transform group-hover:scale-[1.02]">
+                            Launch Inventory Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-white dark:bg-slate-950 scroll-mt-20 transition-colors duration-300">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 data-aos="fade-up" class="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
+                
+                <div class="space-y-4">
+                    <div data-aos="fade-up" data-aos-delay="100" class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition" onclick="toggleAccordion(this)">
+                        <div class="flex justify-between items-center font-semibold text-slate-800 dark:text-slate-200">
+                            <span>How long does system integration typically take?</span>
+                            <svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content text-slate-600 dark:text-slate-400 text-sm mt-0">
+                            <p class="pt-3">For most mid-sized warehouses, full integration takes between 2 to 4 weeks, including staff training and data migration.</p>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="200" class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition" onclick="toggleAccordion(this)">
+                        <div class="flex justify-between items-center font-semibold text-slate-800 dark:text-slate-200">
+                            <span>Is the software cloud-based?</span>
+                            <svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content text-slate-600 dark:text-slate-400 text-sm mt-0">
+                            <p class="pt-3">Yes, our systems are cloud-native, ensuring you can access your data from anywhere. We also offer local fallback modes for areas with unstable internet.</p>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="300" class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition" onclick="toggleAccordion(this)">
+                        <div class="flex justify-between items-center font-semibold text-slate-800 dark:text-slate-200">
+                            <span>Do you provide 24/7 technical support?</span>
+                            <svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content text-slate-600 dark:text-slate-400 text-sm mt-0">
+                            <p class="pt-3">Absolutely. Our standard SLA includes 24/7 critical support for all enterprise clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Split Layout) -->
+        <section id="contact" class="py-24 bg-slate-50 dark:bg-slate-900 scroll-mt-20 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-slate-700">
+                    
+                    <!-- Left: Info -->
+                    <div class="p-10 md:p-12 bg-blue-600 dark:bg-blue-700 text-white flex flex-col justify-between relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-bold mb-6">Let's discuss your project</h2>
+                            <p class="text-blue-100 mb-8">
+                                Ready to optimize your supply chain? Fill out the form, and our engineering team will get back to you within 24 hours.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <span>info@rpggroup.co.za</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <span>Johannesburg, South Africa</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Decor -->
+                        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-blue-500 rounded-full opacity-50 blur-3xl"></div>
+                    </div>
+
+                    <!-- Right: Form -->
+                    <div class="p-10 md:p-12">
+                        <form onsubmit="event.preventDefault(); alert('Thank you! We have received your message.');" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Work Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="john@company.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Tell us about your logistics needs..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-slate-900 dark:bg-slate-950 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-800 transition shadow-lg">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 dark:bg-slate-950 border-t border-slate-800 py-12 text-center text-slate-500">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-center gap-2 mb-4 opacity-50">
+                 <img src="images/Companylogo.png" alt="RPG Group Logo" class="h-8 w-auto grayscale">
+            </div>
+            <p class="text-sm">
+                &copy; 2026 RPG Group. All Rights Reserved.<br>
+                Designed & Engineered in South Africa.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <!-- Scripts -->
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true, // Animations happen only once
+            offset: 100, // Offset (in px) from the original trigger point
+        });
+
+        // Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
+
+        // Accordion Logic
+        function toggleAccordion(element) {
+            const content = element.querySelector('.accordion-content');
+            const icon = element.querySelector('svg');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.classList.remove('active');
+                icon.classList.remove('rotate-180');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('active');
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // Back to Top Button Visibility
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check local storage or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // If is set in local storage
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                // If not set in local storage
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
